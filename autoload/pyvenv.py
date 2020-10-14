@@ -1,4 +1,4 @@
-import vim, os, sys
+import vim, os, sys, site
 
 prev_syspath = None
 
@@ -32,6 +32,11 @@ for item in list(sys.path):
         sys.path.remove(item)
 sys.path[:0] = new_sys_path
 """
+
+path = site.getusersitepackages()
+if path not in sys.path:
+    sys.path.append(path)
+
 
 def activate(env):
     global prev_syspath
